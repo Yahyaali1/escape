@@ -56,9 +56,41 @@ public class PlayerPro : MonoBehaviour {
 
 
     }
+    public void Jump()
+    {
+        if (jumping == false)
+        {
+            //Physics.gravity = Physics.gravity * 2;
+            jumping = true;
+            // body2d.gravityScale = 5;
+            body2d.velocity = new Vector2(forward, jumpspeed);
+            //body2d.AddForce(Vector3.up * jumpspeed * Time.deltaTime,ForceMode2D.Force);
+            body2d.gravityScale = body2d.gravityScale / 2;
+            animate.SetInteger("State", 3);
+            animate.Play("Jump");
+            standstate = false;
+        }
+    }
+    public void Forward()
+    {
+        if (jumping == false)
+        {
+            // moving = false;
+            body2d.velocity = new Vector2(forwardSpeed, 0);
+            animate.SetInteger("State", 2);
+            animate.Play("Run");
+            standstate = false;
+
+            // body2d.gravityScale = 10;
+
+            //body2d.AddForce(transform.up * jumpspeed);
+            //print("helo");
+        }
+
+    }
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.RightArrow ) && jumping == false)
+        if (ForScript.ispressed == true && jumping == false)
         {
            // moving = false;
             body2d.velocity = new Vector2(forwardSpeed,0);
@@ -71,7 +103,7 @@ public class PlayerPro : MonoBehaviour {
             //body2d.AddForce(transform.up * jumpspeed);
             //print("helo");
         }
-        if (Input.GetKey(KeyCode.UpArrow) && jumping == false)
+        if (UpScript.ispressed == true && jumping == false)
         {
             //Physics.gravity = Physics.gravity * 2;
             jumping = true;
