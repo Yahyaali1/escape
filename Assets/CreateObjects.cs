@@ -7,6 +7,8 @@ public class CreateObjects : MonoBehaviour
 
     // Use this for initialization
     public Sprite[] images;
+    public Sprite[] images2;
+    public Sprite[] images3;
     public GameObject prefab;
     public int Timer;
     public int distance=2;
@@ -45,7 +47,19 @@ public class CreateObjects : MonoBehaviour
                     prefab.tag = t;
                     prefab.transform.position = GetComponent<Transform>().position;
 
-                    prefab.GetComponent<SpriteRenderer>().sprite = images[rand];
+                    if (Data.type == 0)
+                    {
+                        prefab.GetComponent<SpriteRenderer>().sprite = images[rand];
+                    }
+                    else if (Data.type == 1)
+                    {
+                        prefab.GetComponent<SpriteRenderer>().sprite = images2[rand];
+                    }
+                    else
+                    {
+                        prefab.GetComponent<SpriteRenderer>().sprite = images3[rand];
+                    }
+                    
                 }
 
             }
@@ -64,7 +78,18 @@ public class CreateObjects : MonoBehaviour
                     prefab.tag = t;
                     prefab.transform.position = GetComponent<Transform>().position;
 
-                    prefab.GetComponent<SpriteRenderer>().sprite = images[rand];
+                    if (Data.type == 0)
+                    {
+                        prefab.GetComponent<SpriteRenderer>().sprite = images[rand];
+                    }
+                    else if (Data.type == 1)
+                    {
+                        prefab.GetComponent<SpriteRenderer>().sprite = images2[rand];
+                    }
+                    else
+                    {
+                        prefab.GetComponent<SpriteRenderer>().sprite = images3[rand];
+                    }
                     prefab.GetComponent<SpriteRenderer>().sortingOrder = 5;
                 }
             }
