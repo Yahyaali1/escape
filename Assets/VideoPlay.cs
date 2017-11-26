@@ -20,8 +20,9 @@ public class VideoPlay : MonoBehaviour {
         void Update()
         {
 
+        //move to next screen on touch count 
             sec = (int)Time.fixedTime;
-            if (sec > limit || Input.anyKey)
+            if (sec > limit || Input.anyKey || Input.touchCount>0)
             {
                 Application.LoadLevel("Wheel");
             }

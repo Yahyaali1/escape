@@ -14,11 +14,12 @@ public class CreateObjects : MonoBehaviour
     public int distance=2;
     int countbad=0;
     int countgood=0;
-    int limit=15;
+    int limit;
     public int fixtime;
     void Awake()
     {
         fixtime = (int)Time.fixedTime;
+        limit = Data.getlimit();
     }
     void Start()
     {

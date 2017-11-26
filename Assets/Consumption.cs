@@ -12,6 +12,7 @@ public class Consumption : MonoBehaviour {
     public GameObject Health;
     public GameObject Particles;
     public bool gameover = false;
+    public bool levelend = false;
     private Transform ps;
     public Text []text;
     public Sprite fail;
@@ -25,6 +26,8 @@ public class Consumption : MonoBehaviour {
 
         //}
         screen.CrossFadeAlpha(0, 0, true);
+        levelend = false;
+        gameover = false;
         
     }
     void OnCollisionEnter2D(Collision2D coll)
@@ -67,6 +70,7 @@ public class Consumption : MonoBehaviour {
         {
             Time.timeScale = 0;
             gameover = true;
+            levelend = true;
             screen.GetComponent<Image>().sprite = Success;
             screen.CrossFadeAlpha(1, 2, true);
 
@@ -74,7 +78,18 @@ public class Consumption : MonoBehaviour {
 
 
     }
+    void reset()
+    {
+        Time.timeScale = 1;
+        gameover = false;
+        levelend = false;
+    }
 
+   public void reload()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+        reset();
+    }
     // Update is called once per frame
     void Update () {
         
@@ -100,19 +115,17 @@ public class Consumption : MonoBehaviour {
         }
         
         //either the game has ended or the player has died
-        if(Input.anyKey && gameover == true)
+        if((Input.anyKey || Input.touchCount >0) && gameover == true && levelend!=true)
         {
             Application.LoadLevel(Application.loadedLevel);
-            Time.timeScale = 1;
-            gameover = false;
+            reset();
         }
         //you are stuck and simply load the level from the start 
         if (Input.GetKey(KeyCode.R))
         {
             //Application.LoadLevel(Application.loadedLevel);
             Application.LoadLevel("IntroToGame");
-            Time.timeScale = 1;
-            gameover = false;
+            reset();
         }
         if (Input.GetKey(KeyCode.S))
         {

@@ -46,8 +46,8 @@ public class Rotate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
-        if (Input.anyKey)
+       //updated for touch counts 
+        if (Input.anyKey || Input.touchCount>0)
         {
             once = true;
         }
@@ -57,9 +57,9 @@ public class Rotate : MonoBehaviour {
             Spin();
         }
 
-        if(stopped==true && once == true && Input.anyKey)
+        if(stopped==true && once == true && (Input.anyKey || Input.touchCount>0))
         {
-            Application.LoadLevel("IntroToGame");
+            Application.LoadLevel("Stage1");
             
         }
         
